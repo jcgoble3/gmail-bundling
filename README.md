@@ -1,37 +1,37 @@
-# Inbox Reborn theme for Gmail™
-#### *Formerly known as Inbox in Gmail*
+# Email Bundling for Gmail™
 
-Web extension which modifies Gmail™ to bring back the features and uncluttered design you knew and loved from Google's discontinued Inbox
+Work-in-progress Web extension for Firefox and Chrome that brings back the email bundling from Google's discontinued Inbox.
 
-![inbox screenshot](https://github.com/boukestam/inbox-in-gmail/blob/master/screenshots/inbox%20v0.4.8-3.png?raw=true)
+## History and Credit
+
+This is a fork of https://github.com/boukestam/inbox-in-gmail by boukestam and russelldc.
+Their extension was aimed at restoring as much of the old Inbox look-and-feel as possible in addition to functionality.
+
+While I appreciate their work, I don't particularly care for the Inbox look and feel, especially the lack of a dark mode (since I often work in dimly lit rooms).
+In reality, the only reason I ever used Inbox in the first place was the ability to bundle emails.
+Other than that, I actually prefer the normal Gmail interface over the Inbox interface.
+
+Hence, I set out on this project to strip out the unnecessary cosmetic bloat and produce an slimmer extension that does only one thing: bundling.
+On my first editing session, I stripped out over 1,300 unnecessary lines of CSS -- a reduction of over 80% in the CSS file.
+The next step is to tackle the JavaScript.
 
 ## Installing
 
-### Chrome
+Currently this is an incomplete work in progress and likely contains multiple bugs. As such, installing is not recommended at this time.
 
-**NOTE**: This extension been removed from the Chrome Web Store for unknown reasons, see [issue #69](https://github.com/boukestam/inbox-in-gmail/issues/69)
+## License
 
-CRX file for Chrome available in [this repo's Releases page](https://github.com/boukestam/inbox-in-gmail/releases)
+MIT License
 
-If the CRX file does not work directly, try loading Inbox Reborn as an **unpacked extension**:
-1. Download [this repo's source code here](https://github.com/boukestam/inbox-in-gmail/archive/master.zip), and unzip it where you like
-2. Go to Chrome's extension settings page, at `chrome://extensions`
-3. Tick the `Developer mode` checkbox on the top right of the page
-4. Click the `Load unpacked` button, then select the unzipped folder you downloaded earlier
+## The content below here is the remains of the README from the original extension I forked. I'm keeping it around as I may make use of some of it.
 
-
-### Firefox
-
-[Firefox Add-ons: Inbox in Gmail](https://addons.mozilla.org/firefox/addon/inbox-in-gmail)
-
+--------------------------------------
 
 ## Features
 
 - Bundle emails by label and category
 - Group emails by date (today, yesterday, this month, etc)
-- Clean interface to return to the simplicity of Inbox
 - Display emails sent to yourself with subject "Reminder" as reminders
-- Colored avatars based on senders name
 - Calendar events displayed in a small card, with inline responses
 
 
@@ -44,8 +44,8 @@ Click the extension's icon at the top right of your browser to adjust the behavi
 #### Reminders
 This option is used to determine how to treat emails sent to yourself.
 
-- All are treated as reminders. 
-- Only emails with a subject containing the word "reminder" are treated as reminders. 
+- All are treated as reminders.
+- Only emails with a subject containing the word "reminder" are treated as reminders.
 - Leave the emails as they are. (Disable)
 
 #### Email Bundling
