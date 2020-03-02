@@ -126,17 +126,20 @@ button.gb_ff.gb_gf  {
 /********** BUNDLING ***********/
 
 .bundle-image {
-	margin-left: 13px;
+	margin-left: 24px;
+	margin-right: 24px;
 }
 .bundle-image img {
 	width: 28px;
 }
 
+/*
 .bundle-wrapper .label-link {
 	margin-left: 5px;
 	font-size: 13px;
 	margin-right: 32px;
 }
+*/
 .bundle-wrapper.contains-unread .label-link,
 .bundle-wrapper .bundle-senders span.strong {
 	font-weight: 700;
@@ -145,9 +148,11 @@ button.gb_ff.gb_gf  {
 	opacity: 0.6;
 }
 
+/*
 .bundle-senders {
 	color: #202124 !important;
 }
+*/
 /* Parent of .bundle-senders */
 .label-link + .xW.xY {
 	flex-grow: 1;
@@ -157,7 +162,7 @@ button.gb_ff.gb_gf  {
 .bundle-wrapper .label-link .bundle-count {
 	font-weight: 400;
 	margin-left: 5px;
-	color: gray;
+	/*color: gray;*/
 }
 
 /* Colored bundle titles for Inbox categories */
