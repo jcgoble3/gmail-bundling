@@ -7,13 +7,17 @@ Work-in-progress Web extension for Firefox and Chrome that brings back the email
 This is a fork of https://github.com/boukestam/inbox-in-gmail by boukestam and russelldc.
 Their extension was aimed at restoring as much of the old Inbox look-and-feel as possible in addition to functionality.
 
-While I appreciate their work, I don't particularly care for the Inbox look and feel, especially the lack of a dark mode (since I often work in dimly lit rooms).
+While I appreciate their work, I don't particularly care for the Inbox look and feel, especially the lack of a dark mode since I often work in less than bright light and at night.
 In reality, the only reason I ever used Inbox in the first place was the ability to bundle emails.
-Other than that, I actually prefer the normal Gmail interface over the Inbox interface.
+I actually prefer the normal Gmail™ interface over the Inbox interface, but bundling was powerful enough to make me use Inbox until well past its bitter end.
+(After Inbox was officially discontinued on April 2, 2019, I actually kept an Inbox tab open on my computer until mid-May, even disabling Windows updates to avoid losing it to a reboot, and only closed it once boukestam and russelldc had implemented bundling by label.
+I also used an old version of the Inbox Android app without the hidden remote kill switch until Google finally disabled the APIs it used in June 2019.)
 
-Hence, I set out on this project to strip out the unnecessary cosmetic bloat and produce an slimmer extension that does only one thing: bundling.
+Hence, I set out on this project to strip out the unnecessary cosmetic bloat and produce an slimmer extension that only does bundling and nothing else
+I also want it to work in Gmail™'s native interface as well as with any theme.
+(Although it isn't related to bundling, I do plan to also keep the functionality that marks emails to yourself as reminders since I use that feature also.)
 On my first editing session, I stripped out over 1,300 unnecessary lines of CSS -- a reduction of over 80% in the CSS file.
-The next step is to tackle the JavaScript.
+I am now working on the JavaScript, which is more complex and will take more time.
 
 ## Installing
 
@@ -23,16 +27,14 @@ Currently this is an incomplete work in progress and likely contains multiple bu
 
 MIT License
 
-## The content below here is the remains of the README from the original extension I forked. I'm keeping it around as I may make use of some of it.
+## The content below here is approximately the remains of the README from the original extension I forked. I'm keeping it around as I may make use of some of it.
 
 --------------------------------------
 
 ## Features
 
 - Bundle emails by label and category
-- Group emails by date (today, yesterday, this month, etc)
 - Display emails sent to yourself with subject "Reminder" as reminders
-- Calendar events displayed in a small card, with inline responses
 
 
 ## Extension Options
@@ -41,20 +43,16 @@ MIT License
 
 Click the extension's icon at the top right of your browser to adjust the behavior of some features:
 
-#### Reminders
+### Reminders
 This option is used to determine how to treat emails sent to yourself.
 
 - All are treated as reminders.
 - Only emails with a subject containing the word "reminder" are treated as reminders.
 - Leave the emails as they are. (Disable)
 
-#### Email Bundling
+### Email Bundling
 This option is used to bundle emails by label in the inbox.
 
-- Toggle Enable/Disable
-
-#### Email Avatars
-This option will show a circle with the first letter initial of the sender, to the left of the email in your folder.
 - Toggle Enable/Disable
 
 
@@ -85,7 +83,6 @@ If you'd like a specific label not to be bundled, create a label called 'Unbundl
 ## Known Issues
 
 - This extension works best in English, because it relies on specific date formats.
-- This currently only supports Gmail™'s default theme. If you enable the Dark theme, you will experience white/invisible text and icons.
 
 
 ## Privacy
