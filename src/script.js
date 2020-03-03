@@ -539,10 +539,7 @@ document.addEventListener('DOMContentLoaded', function () {
     setInterval(updateReminders, 250);
 });
 
-const setFavicon = () => document.querySelector('link[rel*="shortcut icon"]').href = chrome.runtime.getURL('images/favicon.png');;
-
 const init = () => {
-    setFavicon();
     setupMenuNodes();
     reorderMenuItems();
 };
