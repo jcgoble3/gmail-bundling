@@ -388,6 +388,7 @@ const updateReminders = () => {
             emailEl.querySelectorAll('.yP,.zF').forEach(node => { node.innerHTML = 'Reminder';});
 
             addClassToEmail(emailEl, REMINDER_EMAIL_CLASS);
+        }
 
         if (options.emailBundling === 'enabled') {
             // Remove bundles that no longer have associated emails
