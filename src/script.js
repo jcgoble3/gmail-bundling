@@ -214,17 +214,6 @@ const checkEmailUnbundledLabel = labels => labels.filter(label => label.indexOf(
 
 const getReadStatus = emailEl => emailEl.className.indexOf('zE') < 0;
 
-/**
- * If email has snooze data, return true.
- * Expects that the curDate should be larger than prevDate, if not, then also return true;
- */
-const isSnoozed = (email, curDate, prevDate) => {
-    const node = email.querySelector('.by1.cL');
-    if (node && node.innerText !== '') return true;
-
-    return prevDate !== null && curDate < prevDate;
-};
-
 const isStarred = email => {
     const node = email.querySelector('.T-KT');
     if (node && node.title !== 'Not starred') return true;
@@ -270,7 +259,6 @@ const getEmails = () => {
     const tabs = getTabs();
 
     let currentTab = tabs.length && document.querySelector('.aAy[aria-selected="true"]');
-    let prevTimeStamp = null;
     labelStats = {};
 
     isInBundleFlag ? addClassToBody(BUNDLE_PAGE_CLASS) : removeClassFromBody(BUNDLE_PAGE_CLASS);
@@ -284,10 +272,7 @@ const getEmails = () => {
         info.reminderAlreadyProcessed = () => checkEmailClass(email, REMINDER_EMAIL_CLASS);
         info.dateString = getRawDate(email);
         info.date = getDate(info.dateString);
-        info.isSnooze = isSnoozed(email, info.date, prevTimeStamp);
         info.isStarred = isStarred(email);
-        // Only update prevTimeStamp if not snoozed, because we might have multiple snoozes back to back
-        if (!info.isSnooze && info.date) prevTimeStamp = info.date;
         info.labels = getLabels(email);
         info.labels.forEach(l => allLabels.add(l));
 
