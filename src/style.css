@@ -96,12 +96,6 @@ button.gb_ff.gb_gf  {
 }
 
 
-/* Invisible inbox info with huge padding at bottom of email  */
-.pfiaof {
-	display: none;
-}
-
-
 /* Archive button (inbox email, opened email) */
 .brq, .ar8 {
 	background-image: url('chrome-extension://__MSG_@@extension_id__/images/btw_ic_done_black_24dp_2x.png') !important;
