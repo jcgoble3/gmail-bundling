@@ -128,12 +128,6 @@ const addSendersToBundle = (label, senders) => {
         };
     });
     const replacementHTML = `${uniqueSenders.map(sender => `<span class="${sender.isUnread ? 'strong' : ''}">${sender.name}</span>`).join(', ')}`
-    for (let i = 0; i < senders.length; i++) {
-        if (senders[i].isUnread) {
-            document.querySelector(`div[bundleLabel="${label}"]`).classList.add('zE');
-            break;
-        }
-    }
     if (bundleSenders.innerHTML !== replacementHTML) bundleSenders.innerHTML = replacementHTML;
 };
 
@@ -347,6 +341,13 @@ const getEmails = () => {
         addSendersToBundle(label, labelStats[label].senders);
         // Set bold title class for any bundle containing an unread email
         labelStats[label].containsUnread ? addClassToBundle(label, UNREAD_BUNDLE_CLASS) : removeClassFromBundle(label, UNREAD_BUNDLE_CLASS);
+        if (labelStats[label].containsUnread) {
+            addClassToBundle(label, 'zE');
+            addClassToBundle(label, UNREAD_BUNDLE_CLASS);
+        } else {
+            removeClassFromBundle(label, 'zE');
+            removeClassFromBundle(label, UNREAD_BUNDLE_CLASS);
+        }
     }
 
     return [processedEmails, allLabels];
