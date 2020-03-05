@@ -9,7 +9,6 @@ const UNBUNDLED_EMAIL_CLASS = 'unbundled-email';
 const STYLE_NODE_ID_PREFIX = 'hide-email-';
 
 let lastEmailCount = 0;
-let lastRefresh = new Date();
 let loadedMenu = false;
 let labelStats = {};
 let hiddenEmailIds = [];
@@ -52,15 +51,6 @@ const isReminder = function (email, myEmailAddress) {
     }
 
     return false;
-};
-
-const getRawDate = function (email) {
-    const dateElement = email.querySelector('.xW.xY span');
-    if (dateElement) return dateElement.getAttribute('title');
-};
-
-const getDate = function (rawDate) {
-    if (rawDate) return new Date(rawDate);
 };
 
 const getBundledLabels = function () {
@@ -183,7 +173,6 @@ const buildBundleWrapper = function (email, label, hasImportantMarkers) {
                 <span class="WA xY ${importantMarkerClass}"></span>
                 <span class="yX xY label-link .yW" ${bundleTitleColor ? `style="color: ${bundleTitleColor}"` : ''}>${label}</span>
                 <span class="a4W xY">
-                    <span title="${getRawDate(email)}"></span>
                     <div class="bundle-senders"></div>
                 </span>
             </div>
@@ -264,8 +253,6 @@ const getEmails = () => {
         info.emailEl = email;
         info.isReminder = isReminder(email, myEmailAddress);
         info.reminderAlreadyProcessed = () => checkEmailClass(email, REMINDER_EMAIL_CLASS);
-        info.dateString = getRawDate(email);
-        info.date = getDate(info.dateString);
         info.isStarred = isStarred(email);
         info.labels = getLabels(email);
         info.labels.forEach(l => allLabels.add(l));
