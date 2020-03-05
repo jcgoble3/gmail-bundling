@@ -154,7 +154,7 @@ button.gb_ff.gb_gf  {
 }
 */
 /* Parent of .bundle-senders */
-.label-link + .xW.xY {
+.label-link + .a4W.xY {
 	flex-grow: 1;
 	overflow: hidden;
 }

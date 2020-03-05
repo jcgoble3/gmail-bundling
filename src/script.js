@@ -168,7 +168,7 @@ const getBundleTitleColorForLabel = (email, label) => {
         if (labelEl.innerText === label) {
             const labelColor = labelEl.style.backgroundColor;
             // Ignore default label color, light gray
-            //if (labelColor !== 'rgb(221, 221, 221)')
+            if (labelColor !== 'rgb(221, 221, 221)')
                 bundleTitleColor = labelColor;
         }
     });
@@ -189,9 +189,9 @@ const buildBundleWrapper = function (email, label, hasImportantMarkers) {
                 <span class="WA xY ${importantMarkerClass}"></span>
                 <span class="yX xY label-link .yW" ${bundleTitleColor ? `style="color: ${bundleTitleColor}"` : ''}>${label}</span>
                 <span class="a4W xY">
-                    <span title="${getRawDate(email)}"/>
+                    <span title="${getRawDate(email)}"></span>
+                    <div class="bundle-senders"></div>
                 </span>
-                <div class="y2 bundle-senders"></div>
             </div>
     `);
 
