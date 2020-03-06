@@ -189,7 +189,7 @@ const fixLabel = label => encodeURIComponent(label.replace(/[\/\\& ]/g, '-'));
 
 const isInInbox = () => document.querySelector('.nZ a[title=Inbox]') !== null;
 
-const isInBundle = () => document.location.hash.match(/#search\/in%3Ainbox\+label%3A/g) !== null;
+const isInBundle = () => document.location.hash.match(/#search\/in(%3A|:)inbox\+label(%3A|:)/g) !== null;
 
 const checkImportantMarkers = () => document.querySelector('td.WA.xY');
 
