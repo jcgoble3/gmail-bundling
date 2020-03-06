@@ -173,7 +173,7 @@ const buildBundleWrapper = function (email, label, hasImportantMarkers) {
                 <span class="WA xY ${importantMarkerClass}"></span>
                 <span class="yX xY label-link .yW" ${bundleTitleColor ? `style="color: ${bundleTitleColor}"` : ''}>${label}</span>
                 <span class="a4W xY">
-                    <div class="bundle-senders"></div>
+                    <span class="bundle-senders"></span>
                 </span>
             </div>
     `);
