@@ -16,13 +16,13 @@
 
 
 /* Done icon (green checkmark) */
-.byl > .TK:nth-of-type(2) > .aim:nth-of-type(3) .qj {
+.byl>.TK:nth-of-type(2)>.aim:nth-of-type(3) .qj {
 	background-image: url('chrome-extension://__MSG_@@extension_id__/images/ic_done_clr_24dp_r4_2x.png') !important;
 }
 
 @-moz-document url-prefix() {
 	/* Done icon (green checkmark) */
-	.byl > .TK:nth-of-type(2) > .aim:nth-of-type(3) .qj {
+    .byl>.TK:nth-of-type(2)>.aim:nth-of-type(3) .qj {
 		background-image: url('moz-extension://__MSG_@@extension_id__/images/ic_done_clr_24dp_r4_2x.png') !important;
 	}
 }
@@ -41,7 +41,7 @@
 }
 
 /* search icon */
-button.gb_ff.gb_gf  {
+button.gb_ff.gb_gf {
 	margin-top: -3px;
 	margin-left: 0px;
 }
@@ -79,11 +79,11 @@ button.gb_ff.gb_gf  {
 	justify-content: center !important;
 }
 
-.J-KU-Jg-K9.aAA > .aRz > .aAy {
+.J-KU-Jg-K9.aAA>.aRz>.aAy {
 	justify-content: center;
 }
 
-.aAy > .aKp {
+.aAy>.aKp {
 	margin-left: 0;
 }
 
@@ -148,7 +148,7 @@ button.gb_ff.gb_gf  {
 }
 */
 /* Parent of .bundle-senders */
-.label-link + .a4W.xY {
+.label-link+.a4W.xY {
 	flex-grow: 1;
 	overflow: hidden;
 }
@@ -160,27 +160,27 @@ button.gb_ff.gb_gf  {
 }
 
 /* Colored bundle titles for Inbox categories */
-.zA.yO[bundleLabel="Updates"] .label-link > span:not(.bundle-count) {
+.zA.yO[bundleLabel="Updates"] .label-link>span:not(.bundle-count) {
 	color: rgb(255, 104, 57);
 }
-.zA.yO[bundleLabel="Promotions"] .label-link > span:not(.bundle-count) {
+.zA.yO[bundleLabel="Promotions"] .label-link>span:not(.bundle-count) {
 	color: rgb(0, 188, 212);
 }
-.zA.yO[bundleLabel="Forums"] .label-link > span:not(.bundle-count) {
+.zA.yO[bundleLabel="Forums"] .label-link>span:not(.bundle-count) {
 	color: rgb(63, 81, 181);
 }
-.zA.yO[bundleLabel="Social"] .label-link > span:not(.bundle-count) {
+.zA.yO[bundleLabel="Social"] .label-link>span:not(.bundle-count) {
 	color: rgb(219, 68, 55);
 }
-.zA.yO[bundleLabel="Travel"] .label-link > span:not(.bundle-count),
-.zA.yO[bundleLabel="Trips"] .label-link > span:not(.bundle-count) {
+.zA.yO[bundleLabel="Travel"] .label-link>span:not(.bundle-count),
+.zA.yO[bundleLabel="Trips"] .label-link>span:not(.bundle-count) {
 	color: rgb(156, 39, 176);
 }
-.zA.yO[bundleLabel="Finance"] .label-link > span:not(.bundle-count) {
+.zA.yO[bundleLabel="Finance"] .label-link>span:not(.bundle-count) {
 	color: rgb(103, 159, 56);
 }
-.zA.yO[bundleLabel="Orders"] .label-link > span:not(.bundle-count),
-.zA.yO[bundleLabel="Purchases"] .label-link > span:not(.bundle-count) {
+.zA.yO[bundleLabel="Orders"] .label-link>span:not(.bundle-count),
+.zA.yO[bundleLabel="Purchases"] .label-link>span:not(.bundle-count) {
 	color: rgb(121, 85, 72);
 }
 
@@ -189,7 +189,7 @@ button.gb_ff.gb_gf  {
 }
 
 /* Bundle row settings */
-.zA > span.oZ-x3 {
+.zA>span.oZ-x3 {
 	order: 0;
 }
 
