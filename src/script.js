@@ -393,7 +393,7 @@ const updateReminders = () => {
 **
 **START OF LEFT MENU
 **
-*/
+*
 
 const menuNodes = {};
 const setupMenuNodes = () => {
@@ -496,6 +496,7 @@ const queryParentSelector = (elm, sel) => {
 **
 */
 
+/*
 const triggerMouseEvent = function (node, event) {
     const mouseUpEvent = document.createEvent('MouseEvents');
     mouseUpEvent.initEvent(event, true, true);
@@ -507,11 +508,13 @@ const waitForElement = function (selector, callback, tries = 100) {
     if (element) callback(element);
     else if (tries > 0) setTimeout(() => waitForElement(selector, callback, tries - 1), 100);
 };
+*/
 
 document.addEventListener('DOMContentLoaded', function () {
     setInterval(updateReminders, 250);
 });
 
+/*
 const init = () => {
     setupMenuNodes();
     reorderMenuItems();
@@ -519,3 +522,4 @@ const init = () => {
 
 if (document.head) init();
 else document.addEventListener('DOMContentLoaded', init);
+*/
