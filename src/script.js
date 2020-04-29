@@ -457,21 +457,28 @@ const getEmails = () => {
 		// Collect senders, message count and unread stats for each label
 		if (info.labels.length) {
 			const participants = Array.from(getEmailParticipants(email));
-			const firstParticipant = participants[0].getAttribute('name');
+			let participant = null;
+			for (let i = 0; i < participants.length; i++) {
+				participant = participants[i];
+				if (checkEmailClass(participant, 'zF')) {
+					break;
+				}
+			}
+			const displayParticipant = participant.getAttribute('name');
 			info.labels.forEach(label => {
 				if (!(label in labelStats)) {
 					labelStats[label] = {
 						title: label,
 						count: 1,
 						senders: [{
-							name: firstParticipant,
+							name: displayParticipant,
 							isUnread: info.isUnread
 						}]
 					};
 				} else {
 					labelStats[label].count++;
 					labelStats[label].senders.push({
-						name: firstParticipant,
+						name: displayParticipant,
 						isUnread: info.isUnread
 					});
 				}
