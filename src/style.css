@@ -15,13 +15,13 @@
 }
 
 
-/* Done icon (green checkmark) */
+/* Done icon (green checkmark) *
 .byl>.TK:nth-of-type(2)>.aim:nth-of-type(3) .qj {
     background-image: url('chrome-extension://__MSG_@@extension_id__/images/ic_done_clr_24dp_r4_2x.png') !important;
 }
 
 @-moz-document url-prefix() {
-    /* Done icon (green checkmark) */
+    /* Done icon (green checkmark) *
     .byl>.TK:nth-of-type(2)>.aim:nth-of-type(3) .qj {
         background-image: url('moz-extension://__MSG_@@extension_id__/images/ic_done_clr_24dp_r4_2x.png') !important;
     }
@@ -34,30 +34,30 @@
 **
 */
 
-/* main top bar including shadow*/
+/* main top bar including shadow*
 .gb_xd.gb_4d.gb_Fd {
     height: 156px;
     box-shadow: 0px 5px 4px #c6c6c6;
 }
 
-/* search icon */
+/* search icon *
 button.gb_ff.gb_gf {
     margin-top: -3px;
     margin-left: 0px;
 }
 
-/* main search window */
+/* main search window *
 .gb_oc.gb_Od.gb_Xd.gb_Td {
     margin-left: 10px;
 }
 
-/* search mail text */
+/* search mail text *
 input.gb_3e {
     margin-top: -5px;
     margin-left: 20px;
 }
 
-/* search bar */
+/* search bar *
 .gb_mf.gb_gf {
     margin-top: 0px;
     margin-left: 30px;
@@ -70,7 +70,7 @@ input.gb_3e {
 **
 */
 
-/* Inbox tabs align center */
+/* Inbox tabs align center *
 .aAA {
     max-width: 1200px !important;
 }
@@ -88,7 +88,7 @@ input.gb_3e {
 }
 
 
-/* Fix background color for vertical split layout */
+/* Fix background color for vertical split layout *
 .UI .nH.nn,
 .nH.bkK.nn,
 .age {
@@ -96,7 +96,7 @@ input.gb_3e {
 }
 
 
-/* Archive button (inbox email, opened email) */
+/* Archive button (inbox email, opened email) *
 .brq, .ar8 {
     background-image: url('chrome-extension://__MSG_@@extension_id__/images/btw_ic_done_black_24dp_2x.png') !important;
     background-size: 24px !important;
@@ -104,7 +104,7 @@ input.gb_3e {
 
 
 @-moz-document url-prefix() {
-    /* Archive button (inbox email, opened email) */
+    /* Archive button (inbox email, opened email) *
     .brq, .ar8 {
         background-image: url('moz-extension://__MSG_@@extension_id__/images/btw_ic_done_black_24dp_2x.png') !important;
     }
