@@ -187,7 +187,7 @@ const buildBundleWrapper = function (email, label, hasImportantMarkers) {
 
 const fixLabel = label => encodeURIComponent(label.replace(/[\/\\& ]/g, '-'));
 
-const isInInbox = () => document.querySelector('.byl .TO:first-of-type.nZ') !== null;
+const isInInbox = () => document.location.hash.match(/#inbox/g) !== null; //document.querySelector('.byl .TO:first-of-type.nZ') !== null;
 
 const isInBundle = () => document.location.hash.match(/#search\/in(%3A|:)inbox\+label(%3A|:)/g) !== null;
 
