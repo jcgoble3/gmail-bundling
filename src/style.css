@@ -252,7 +252,7 @@ body.email-bundling-enabled.bundle-page .nH.ar4.B .yi {
 */
 
 
-/* Hide Compose and Reminder buttons from Gmail's Print view */
+/* Hide Compose and Reminder buttons from Gmail's Print view *
 @media print {
     .add-reminder,
     .floating-compose {
