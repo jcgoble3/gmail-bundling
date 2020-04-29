@@ -37,10 +37,10 @@ Element.prototype.remove = function () {
 	this.parentElement.removeChild(this);
 };
 
-const getMyEmailAddress = () => { 
-	if (document.querySelector('.gb_hb').innerText) return document.querySelector('.gb_hb').innerText; 
-	if (document.querySelector('.gb_lb').innerText) return document.querySelector('.gb_lb').innerText; 
-	if (document.querySelector('.gb_qb').innerText) return document.querySelector('.gb_qb').innerText; 
+const getMyEmailAddress = () => {
+	if (document.querySelector('.gb_hb').innerText) return document.querySelector('.gb_hb').innerText;
+	if (document.querySelector('.gb_lb').innerText) return document.querySelector('.gb_lb').innerText;
+	if (document.querySelector('.gb_qb').innerText) return document.querySelector('.gb_qb').innerText;
 	return '';
 }
 
@@ -214,7 +214,7 @@ const reloadOptions = () => {
 		// Remove avatar elements
 		document.querySelectorAll('.' + AVATAR_CLASS).forEach(avatarEl => avatarEl.remove());
 	}
-	
+
 	// Add option classes to body for css styling, and unbundle emails when disabled
 	if (options.emailBundling === 'enabled' && !document.body.classList.contains(BUNDLING_OPTION_CLASS)) {
 		document.body.classList.add(BUNDLING_OPTION_CLASS);
@@ -337,7 +337,7 @@ const buildBundleWrapper = function (email, label, hasImportantMarkers) {
 
 const fixLabel = label => encodeURIComponent(label.replace(/[\/\\& ]/g, '-'));
 
-const isInInbox = () => document.querySelector('.nZ a[title=Inbox]') !== null;
+const isInInbox = () => document.location.hash.match(/#inbox/g) !== null; //document.querySelector('.byl .TO:first-of-type.nZ') !== null;
 
 const isInBundle = () => document.location.hash.match(/#search\/in%3Ainbox\+label%3A/g) !== null;
 
@@ -359,8 +359,8 @@ const isSnoozed = (email, curDate, prevDate) => {
 };
 
 const isStarred = email => {
-	const node = email.querySelector('.T-KT');
-	if (node && node.title !== 'Not starred') return true;
+    const node = email.querySelector('.T-KT-JX');
+    return (node && getComputedStyle(node).display !== 'none');
 };
 
 /**
@@ -441,7 +441,7 @@ const getEmails = () => {
 				}
 			});
 		}
-		
+
 		// Check for labels used for Tabs, and hide them from the row.
 		if ( false != currentTab ) {
 			info.emailEl.querySelectorAll('.ar.as').forEach(labelEl => {
@@ -468,7 +468,7 @@ const getEmails = () => {
 							isUnread: info.isUnread
 						}]
 					};
-				} else { 
+				} else {
 					labelStats[label].count++;
 					labelStats[label].senders.push({
 						name: firstParticipant,
@@ -661,7 +661,7 @@ const reorderMenuItems = () => {
 
       // Manually add on-click event to done elment
       done.addEventListener('click', () => window.location.assign('#archive'));
-			
+
       // Rewrite text from All Mail to Done
       done.querySelector('a').innerText = 'Done';
 
@@ -776,7 +776,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		});
 	});
   document.body.appendChild(addReminder);
-  
+
   waitForElement('a[title="Gmail"]:not([aria-label])', handleHashChange);
 
 	const floatingComposeButton = document.createElement('div');
