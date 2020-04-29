@@ -187,7 +187,7 @@ const buildBundleWrapper = function (email, label, hasImportantMarkers) {
 
 const fixLabel = label => encodeURIComponent(label.replace(/[\/\\& ]/g, '-'));
 
-const isInInbox = () => document.querySelector('.nZ a[title=Inbox]') !== null;
+const isInInbox = () => document.querySelector('.byl .TO:first-of-type.nZ') !== null;
 
 const isInBundle = () => document.location.hash.match(/#search\/in(%3A|:)inbox\+label(%3A|:)/g) !== null;
 
@@ -198,8 +198,8 @@ const checkEmailUnbundledLabel = labels => labels.filter(label => label.indexOf(
 const getReadStatus = emailEl => emailEl.className.indexOf('zE') < 0;
 
 const isStarred = email => {
-    const node = email.querySelector('.T-KT');
-    if (node && node.title !== 'Not starred') return true;
+    const node = email.querySelector('.T-KT-JX');
+    return (node && getComputedStyle(node).display !== 'none');
 };
 
 /**
