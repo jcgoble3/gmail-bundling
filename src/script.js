@@ -613,6 +613,8 @@ const updateReminders = () => {
 				});
 			} else if (!emailInfo.isUnbundled && !labels.length && hiddenEmailIds.includes(emailEl.id)) {
 				removeStyleNodeWithEmailId(emailEl.id);
+			} else if (emailInfo.isStarred && hiddenEmailIds.includes(emailEl.id)) {
+				removeStyleNodeWithEmailId(emailEl.id);
 			}
 		}
 	}
