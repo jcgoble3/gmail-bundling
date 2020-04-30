@@ -1,4 +1,4 @@
-const REMINDER_EMAIL_CLASS = 'reminder';
+//const REMINDER_EMAIL_CLASS = 'reminder';
 const BUNDLE_PAGE_CLASS = 'bundle-page';
 const BUNDLE_WRAPPER_CLASS = 'bundle-wrapper';
 const UNREAD_BUNDLE_CLASS = 'contains-unread';
@@ -30,6 +30,7 @@ const getEmailParticipants = function (email) {
     return email.querySelectorAll('.yW span[email]');
 };
 
+/*
 const isReminder = function (email, myEmailAddress) {
     // if user doesn't want reminders treated special, then just return as though current email is not a reminder
     if (options.reminderTreatment === 'none') return false;
@@ -52,6 +53,7 @@ const isReminder = function (email, myEmailAddress) {
 
     return false;
 };
+*/
 
 const getBundledLabels = function () {
     return Array.from(document.querySelectorAll('.BltHke[role=main] .bundle-wrapper')).reduce((bundledLabels, el) => {
@@ -251,8 +253,8 @@ const getEmails = () => {
         let email = emails[i];
         let info = {};
         info.emailEl = email;
-        info.isReminder = isReminder(email, myEmailAddress);
-        info.reminderAlreadyProcessed = () => checkEmailClass(email, REMINDER_EMAIL_CLASS);
+        //info.isReminder = isReminder(email, myEmailAddress);
+        //info.reminderAlreadyProcessed = () => checkEmailClass(email, REMINDER_EMAIL_CLASS);
         info.isStarred = isStarred(email);
         info.labels = getLabels(email);
         info.labels.forEach(l => allLabels.add(l));
@@ -347,7 +349,7 @@ const getEmails = () => {
     return [processedEmails, allLabels];
 };
 
-const updateReminders = () => {
+const updateBundles = () => {
     reloadOptions();
     const [emails, allLabels] = getEmails();
     const myEmail = getMyEmailAddress();
@@ -360,6 +362,7 @@ const updateReminders = () => {
     for (const emailInfo of emails) {
         const emailEl = emailInfo.emailEl;
 
+        /*
         if (emailInfo.isReminder && !emailInfo.reminderAlreadyProcessed()) { // skip if already added class
             if (emailInfo.subject.toLowerCase() === 'reminder') {
                 emailInfo.subjectEl.outerHTML = '';
@@ -369,6 +372,7 @@ const updateReminders = () => {
 
             addClassToEmail(emailEl, REMINDER_EMAIL_CLASS);
         }
+        */
 
         if (options.emailBundling === 'enabled') {
             // Remove bundles that no longer have associated emails
@@ -520,7 +524,7 @@ const waitForElement = function (selector, callback, tries = 100) {
 */
 
 document.addEventListener('DOMContentLoaded', function () {
-    setInterval(updateReminders, 250);
+    setInterval(updateBundles, 250);
 });
 
 /*
