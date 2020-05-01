@@ -203,16 +203,21 @@ const buildBundleWrapper = function (email, label, hasImportantMarkers) {
 
     addClassToEmail(bundleWrapper, BUNDLE_WRAPPER_CLASS);
 
-    bundleWrapper.onclick = () => location.href = `#search/in%3Ainbox+label%3A${fixLabel(label)}`;
+    bundleWrapper.onclick = () => location.href = `#search/in%3Ainbox+label%3A"${encodeURIComponent(label)}"`;
 
     if (email && email.parentNode) email.parentElement.insertBefore(bundleWrapper, email);
 };
 
-const fixLabel = label => encodeURIComponent(label.replace(/[\/\\& ]/g, '-'));
-
 const isInInbox = () => document.location.hash.match(/#inbox/g) !== null; //document.querySelector('.byl .TO:first-of-type.nZ') !== null;
 
-const isInBundle = () => document.location.hash.match(/#search\/in(%3A|:)inbox\+label(%3A|:)/g) !== null;
+const getBundleName = () => {
+    const match = document.location.hash.match(/#search\/in(?:%3A|:)inbox\+label(?:%3A|:)%22(.+?)%22$/);
+    if (!match) {
+        return null;
+    }
+    bundleName = match[1].replace('+', ' ');
+    return decodeURIComponent(bundleName);
+}
 
 const checkImportantMarkers = () => document.querySelector('td.WA.xY');
 
@@ -259,7 +264,7 @@ const getEmails = () => {
     const emails = document.querySelectorAll('.BltHke[role=main] .zA');
     const myEmailAddress = getMyEmailAddress();
     const isInInboxFlag = isInInbox();
-    const isInBundleFlag = isInBundle();
+    const bundleName = getBundleName();
     const processedEmails = [];
     const allLabels = new Set();
     const tabs = getTabs();
@@ -267,7 +272,7 @@ const getEmails = () => {
     let currentTab = tabs.length && document.querySelector('.aAy[aria-selected="true"]');
     labelStats = {};
 
-    isInBundleFlag ? addClassToBody(BUNDLE_PAGE_CLASS) : removeClassFromBody(BUNDLE_PAGE_CLASS);
+    bundleName ? addClassToBody(BUNDLE_PAGE_CLASS) : removeClassFromBody(BUNDLE_PAGE_CLASS);
 
     // Start from last email on page and head towards first
     for (let i = emails.length - 1; i >= 0; i--) {
@@ -283,15 +288,12 @@ const getEmails = () => {
         info.unbundledAlreadyProcessed = () => checkEmailClass(email, UNBUNDLED_EMAIL_CLASS);
         // Check for Unbundled parent label, mark row as unbundled
         info.isUnbundled = checkEmailUnbundledLabel(info.labels);
-        if ((isInInboxFlag || isInBundleFlag) && info.isUnbundled && !info.unbundledAlreadyProcessed()) {
+        if ((isInInboxFlag || bundleName) && info.isUnbundled && !info.unbundledAlreadyProcessed()) {
             addClassToEmail(email, UNBUNDLED_EMAIL_CLASS);
             info.emailEl.querySelectorAll('.ar.as').forEach(labelEl => {
                 if (labelEl.querySelector('.at').title.indexOf(UNBUNDLED_PARENT_LABEL) >= 0) {
                     // Remove 'Unbundled/' from display in the UI
                     labelEl.querySelector('.av').innerText = labelEl.innerText.replace(UNBUNDLED_PARENT_LABEL + '/', '');
-                } else {
-                    // Hide labels that aren't nested under UNBUNDLED_PARENT_LABEL
-                    labelEl.hidden = true;
                 }
             });
         }
@@ -301,6 +303,15 @@ const getEmails = () => {
             info.emailEl.querySelectorAll('.ar.as').forEach(labelEl => {
                 if ( labelEl.innerText == currentTab.innerText ) {
                     // Remove Tabbed labels from the row.
+                    labelEl.hidden = true;
+                }
+            });
+        }
+
+        // Hide label inside its own bundle display
+        if (bundleName) {
+            info.emailEl.querySelectorAll('.ar.as').forEach(labelEl => {
+                if (labelEl.querySelector(`.at[title="${bundleName}"], .at[title="Inbox"]`)) {
                     labelEl.hidden = true;
                 }
             });
