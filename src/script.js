@@ -315,6 +315,10 @@ const getEmails = () => {
                     labelEl.hidden = true;
                 }
             });
+        } else {
+            info.emailEl.querySelectorAll('.ar.as').forEach(labelEl => {
+                labelEl.hidden = false;
+            });
         }
 
         info.isUnread = !getReadStatus(email);
