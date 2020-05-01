@@ -145,7 +145,7 @@ const getBundleImageForLabel = (label) => {
         case 'Social':
             return chrome.runtime.getURL('images/ic_social_24px_clr_r3_2x.png');
         default:
-            return chrome.runtime.getURL('images/ic_custom-cluster_24px_g60_r3_2x.png');
+            return null;
     }
 };
 
@@ -168,19 +168,37 @@ const getBundleTitleColorForLabel = (email, label) => {
 const buildBundleWrapper = function (email, label, hasImportantMarkers) {
     const importantMarkerClass = hasImportantMarkers ? '' : 'hide-important-markers';
     const bundleImage = getBundleImageForLabel(label);
-    const bundleTitleColor = bundleImage.match(/custom-cluster/) && getBundleTitleColorForLabel(email, label);
+    const bundleTitleColor = !bundleImage && getBundleTitleColorForLabel(email, label);
 
+    // We use inline SVG here for easy recoloring
     const bundleWrapper = htmlToElements(`
-            <div class="zA yO" bundleLabel="${label}">
-                <span class="oZ-x3 xY aid bundle-image">
-                    <img src="${bundleImage}" ${bundleTitleColor ? `style="filter: drop-shadow(0 0 0 ${bundleTitleColor}) saturate(300%)"` : ''}/>
-                </span>
-                <span class="WA xY ${importantMarkerClass}"></span>
-                <span class="yX xY label-link .yW" ${bundleTitleColor ? `style="color: ${bundleTitleColor}"` : ''}>${label}</span>
-                <span class="a4W xY">
-                    <span class="bundle-senders"></span>
-                </span>
-            </div>
+        <div class="zA yO" bundleLabel="${label}">
+            <span class="oZ-x3 xY aid bundle-image">
+                ${bundleImage ? `<img src="${bundleImage}"/>` :
+                    `<svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="28px" height="28px" viewBox="0 0 144 144">
+                        <g transform="translate(0,144) scale(0.1,-0.1)" fill="${bundleTitleColor ? `${bundleTitleColor}` : 'rgb(102, 102, 102)'}">
+                            <path d="M322 1157 c-12 -13 -22 -35 -22 -50 l0 -27 405 0 c445 0 449 0 480
+                                -60 12 -24 15 -79 15 -315 l0 -285 28 0 c17 0 37 10 50 23 22 23 22 28 22 358
+                                l0 336 -23 21 c-23 22 -25 22 -478 22 l-456 0 -21 -23z"
+                            />
+                            <path d="M142 977 c-22 -23 -22 -28 -22 -358 l0 -336 23 -21 c23 -22 25 -22
+                                478 -22 l456 0 21 23 c22 23 22 28 22 358 l0 336 -23 21 c-23 22 -25 22 -478
+                                22 l-456 0 -21 -23z m217 -142 c25 -19 51 -38 56 -43 6 -4 26 -19 45 -32 19
+                                -14 40 -29 46 -35 6 -5 22 -17 34 -25 12 -8 33 -23 47 -33 28 -23 56 -17 98
+                                18 73 62 242 182 263 187 28 8 64 -27 60 -57 -3 -20 -128 -121 -258 -209 -36
+                                -24 -76 -54 -89 -65 -30 -26 -50 -26 -81 -2 -14 11 -79 59 -145 106 -218 158
+                                -221 162 -188 211 20 32 47 27 112 -21z"
+                            />
+                        </g>
+                    </svg>`
+                }
+            </span>
+            <span class="WA xY ${importantMarkerClass}"></span>
+            <span class="yX xY label-link .yW" ${bundleTitleColor ? `style="color: ${bundleTitleColor}"` : ''}>${label}</span>
+            <span class="a4W xY">
+                <span class="bundle-senders"></span>
+            </span>
+        </div>
     `);
 
     addClassToEmail(bundleWrapper, BUNDLE_WRAPPER_CLASS);

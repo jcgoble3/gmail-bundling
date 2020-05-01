@@ -126,7 +126,6 @@ input.gb_3e {
 .bundle-image img {
     width: 28px;
 }
-
 /*
 .bundle-wrapper .label-link {
 	margin-left: 5px;
@@ -138,7 +137,8 @@ input.gb_3e {
 .bundle-wrapper .bundle-senders span.strong {
     font-weight: 700;
 }
-.bundle-wrapper:not(.contains-unread) .bundle-image img {
+.bundle-wrapper:not(.contains-unread) .bundle-image img,
+.bundle-wrapper:not(.contains-unread) .bundle-image svg {
     opacity: 0.6;
 }
 
