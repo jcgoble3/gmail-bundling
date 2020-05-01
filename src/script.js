@@ -221,7 +221,10 @@ const reloadOptions = () => {
 	} else if (options.emailBundling === 'disabled' && document.body.classList.contains(BUNDLING_OPTION_CLASS)) {
 		document.body.classList.remove(BUNDLING_OPTION_CLASS);
 		// Unbundle emails
-		document.querySelectorAll('.' + BUNDLED_EMAIL_CLASS).forEach(emailEl => emailEl.classList.remove(BUNDLED_EMAIL_CLASS));
+        document.querySelectorAll('.' + BUNDLED_EMAIL_CLASS).forEach(emailEl => {
+            emailEl.classList.remove(BUNDLED_EMAIL_CLASS);
+            removeStyleNodeWithEmailId(emailEl.id);;
+        });
 		// Remove bundle wrapper rows
 		document.querySelectorAll('.' + BUNDLE_WRAPPER_CLASS).forEach(bundleEl => bundleEl.remove());
 	}
