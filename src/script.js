@@ -545,22 +545,34 @@ const queryParentSelector = (elm, sel) => {
 **
 */
 
-/*
 const triggerMouseEvent = function (node, event) {
-    const mouseUpEvent = document.createEvent('MouseEvents');
-    mouseUpEvent.initEvent(event, true, true);
-    node.dispatchEvent(mouseUpEvent);
+    const mouseEvent = document.createEvent('MouseEvents');
+    mouseEvent.initEvent(event, true, true);
+    node.dispatchEvent(mouseEvent);
 };
+
+const linkButtons = function () {
+    archiveButton = document.querySelector('.iH .lR');
+    if (!archiveButton) return;
+    backButton = document.querySelector('.iH .lS');
+    if (!backButton) return;
+    archiveButton.onclick = () => {
+        triggerMouseEvent(backButton, "mousedown");
+        triggerMouseEvent(backButton, "mouseup");
+        // check if bundle empty
+        waitForElement('.TB', element => document.querySelector('.aHS-bnt').click(), 25);
+    }
+}
 
 const waitForElement = function (selector, callback, tries = 100) {
     const element = document.querySelector(selector);
     if (element) callback(element);
     else if (tries > 0) setTimeout(() => waitForElement(selector, callback, tries - 1), 100);
 };
-*/
 
 document.addEventListener('DOMContentLoaded', function () {
     setInterval(updateBundles, 250);
+    setInterval(linkButtons, 250);
 });
 
 /*
