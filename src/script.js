@@ -14,6 +14,8 @@ let labelStats = {};
 let hiddenEmailIds = [];
 let options = {};
 
+let navigationInterval = null;
+
 /* remove element */
 Element.prototype.remove = function () {
     this.parentElement.removeChild(this);
@@ -79,6 +81,14 @@ const reloadOptions = () => {
         });
         // Remove bundle wrapper rows
         document.querySelectorAll('.' + BUNDLE_WRAPPER_CLASS).forEach(bundleEl => bundleEl.remove());
+    }
+
+    // Turn navigation on or off
+    if (options.navigation === 'enabled' && navigationInterval === null) {
+        navigationInterval = setInterval(linkButtons, 250);
+    } else if (options.navigation === 'disabled' && navigationInterval !== null) {
+        clearInterval(navigationInterval);
+        navigationInterval = null;
     }
 };
 
@@ -575,7 +585,6 @@ const waitForElement = function (selector, callback, tries = 100) {
 
 document.addEventListener('DOMContentLoaded', function () {
     setInterval(updateBundles, 250);
-    setInterval(linkButtons, 250);
 });
 
 /*

@@ -18,12 +18,27 @@
     </div>
     -->
     <div class="setting">
-        <div class="setting-title">Email Bundling</div>
+        <div class="setting-title">Experimental: Improved navigation</div>
         <div class="setting-content">
-            Bundles emails in your inbox by label<br /><br />
-            <input type="radio" name="email-bundling" value="enabled"> Enabled
+            <p>
+                When enabled, clicking the Archive button inside an email,
+                while working in a bundle (or a search query),
+                will automatically return to the bundled email list or search results.
+                Then, if there are no emails remaining in the bundle or search query,
+                you will be automatically returned to the main Inbox screen
+                after a brief delay (typically less than a second).
+                Additionally, upon clicking the Delete button from inside an email,
+                you will likewise be returned to the Inbox if none remain.
+            </p>
+            <p><strong>WARNING: This is an experimental feature; use at your own risk!</strong> Currently known issues include:</p>
+            <ul>
+                <li>In some cases, the automatic clicking can cause the popup message with the Undo link to be killed.</li>
+                <li>Automatic navigation does not work when deleting or archiving from the email list using hover actions or checkboxes; it only works from the toolbar buttons when viewing the contents of an email.</li>
+            </ul>
+            <br>
+            <input id="navigation-enabled" type="radio" name="navigation" value="enabled"> <label for="navigation-enabled">Enabled</label>
             <br />
-            <input type="radio" name="email-bundling" value="disabled"> Disabled
+            <input id="navigation-disabled" type="radio" name="navigation" value="disabled"> <label for="navigation-disabled">Disabled</label>
         </div>
     </div>
 </div>

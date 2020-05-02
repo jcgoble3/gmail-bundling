@@ -1,20 +1,19 @@
-//const REMINDER_TREATMENT_SELECTOR = 'input[name=reminder-treatment]';
 const BUNDLED_EMAIL_SELECTOR = 'input[name=email-bundling]';
+const NAVIGATION_SELECTOR = 'input[name=navigation]';
 
 function saveOptions() {
-	//const reminderTreatment = getSelectedRadioValue(REMINDER_TREATMENT_SELECTOR);
-	const emailBundling = getSelectedRadioValue(BUNDLED_EMAIL_SELECTOR);
+	const navigation = getSelectedRadioValue(NAVIGATION_SELECTOR);
+	const emailBundling = 'enabled';
 
-	//const options = { reminderTreatment, emailBundling };
-	const options = { emailBundling };
+	const options = { navigation, emailBundling };
+	console.log(options);
 
 	localStorage.setItem('options', JSON.stringify(options));
 }
 
 function restoreOptions() {
 	chrome.runtime.sendMessage({ method: 'getOptions' }, function(options) {
-		//selectRadioWithValue(REMINDER_TREATMENT_SELECTOR, options.reminderTreatment);
-		selectRadioWithValue(BUNDLED_EMAIL_SELECTOR, options.emailBundling);
+		selectRadioWithValue(NAVIGATION_SELECTOR, options.navigation);
 	});
 }
 
@@ -29,5 +28,4 @@ const getSelectedRadioValue = selector => document.querySelector(selector + ':ch
 const monitorChange = element => element.addEventListener('click', saveOptions);
 
 document.addEventListener('DOMContentLoaded', restoreOptions);
-//document.querySelectorAll(REMINDER_TREATMENT_SELECTOR).forEach(monitorChange);
-document.querySelectorAll(BUNDLED_EMAIL_SELECTOR).forEach(monitorChange);
+document.querySelectorAll('input').forEach(monitorChange);
