@@ -562,6 +562,9 @@ const linkButtons = function () {
         // check if bundle empty
         waitForElement('.TB', element => document.querySelector('.aHS-bnt').click(), 25);
     }
+    deleteButton = document.querySelector('.iH .nX');
+    if (!deleteButton) return;
+    deleteButton.onclick = () => waitForElement('.TB', element => document.querySelector('.aHS-bnt').click(), 25);
 }
 
 const waitForElement = function (selector, callback, tries = 100) {
