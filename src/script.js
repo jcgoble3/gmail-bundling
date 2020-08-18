@@ -21,12 +21,14 @@ Element.prototype.remove = function () {
     this.parentElement.removeChild(this);
 };
 
+/*
 const getMyEmailAddress = () => {
     if (document.querySelector('.gb_hb').innerText) return document.querySelector('.gb_hb').innerText;
     if (document.querySelector('.gb_lb').innerText) return document.querySelector('.gb_lb').innerText;
     if (document.querySelector('.gb_qb').innerText) return document.querySelector('.gb_qb').innerText;
     return '';
 }
+*/
 
 const getEmailParticipants = function (email) {
     return email.querySelectorAll('.yW span[email]');
@@ -272,7 +274,7 @@ const createStyleNodeWithEmailId = (id) => {
 
 const getEmails = () => {
     const emails = document.querySelectorAll('.BltHke[role=main] .zA');
-    const myEmailAddress = getMyEmailAddress();
+    //const myEmailAddress = getMyEmailAddress();
     const isInInboxFlag = isInInbox();
     const bundleName = getBundleName();
     const processedEmails = [];
@@ -398,7 +400,7 @@ const getEmails = () => {
 const updateBundles = () => {
     reloadOptions();
     const [emails, allLabels] = getEmails();
-    const myEmail = getMyEmailAddress();
+    //const myEmail = getMyEmailAddress();
     let isInInboxFlag = isInInbox();
     let hasImportantMarkers = checkImportantMarkers();
     let tabs = getTabs();
