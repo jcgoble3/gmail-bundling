@@ -1,115 +1,8 @@
-/* Time [today, yesterday, February, etc.] *
-.time {
-    color: #999;
-    font-size: 14px;
-    padding-bottom: 10px;
-    padding-top: 20px;
-    padding-left: 20px;
-}
-
-
 /* Fix for weird white space */
 /* JavaScript-produced element */
 .eb.TD {
     display: none;
 }
-
-
-/* Done icon (green checkmark) *
-.byl>.TK:nth-of-type(2)>.aim:nth-of-type(3) .qj {
-    background-image: url('chrome-extension://__MSG_@@extension_id__/images/ic_done_clr_24dp_r4_2x.png') !important;
-}
-
-@-moz-document url-prefix() {
-    /* Done icon (green checkmark) *
-    .byl>.TK:nth-of-type(2)>.aim:nth-of-type(3) .qj {
-        background-image: url('moz-extension://__MSG_@@extension_id__/images/ic_done_clr_24dp_r4_2x.png') !important;
-    }
-}
-
-
-/*
-**
-**START OF MAIN MENU, SEARCH BAR AND EMAIL AREA
-**
-*/
-
-/* main top bar including shadow*
-.gb_xd.gb_4d.gb_Fd {
-    height: 156px;
-    box-shadow: 0px 5px 4px #c6c6c6;
-}
-
-/* search icon *
-button.gb_ff.gb_gf {
-    margin-top: -3px;
-    margin-left: 0px;
-}
-
-/* main search window *
-.gb_oc.gb_Od.gb_Xd.gb_Td {
-    margin-left: 10px;
-}
-
-/* search mail text *
-input.gb_3e {
-    margin-top: -5px;
-    margin-left: 20px;
-}
-
-/* search bar *
-.gb_mf.gb_gf {
-    margin-top: 0px;
-    margin-left: 30px;
-    height: 36px;
-}
-
-/*
-**
-**END OF MAIN MENU, SEARCH BAR AND EMAIL AREA
-**
-*/
-
-/* Inbox tabs align center *
-.aAA {
-    max-width: 1200px !important;
-}
-
-.aKk>tbody, .aAA, .aRz.J-KU {
-    justify-content: center !important;
-}
-
-.J-KU-Jg-K9.aAA>.aRz>.aAy {
-    justify-content: center;
-}
-
-.aAy>.aKp {
-    margin-left: 0;
-}
-
-
-/* Fix background color for vertical split layout *
-.UI .nH.nn,
-.nH.bkK.nn,
-.age {
-    background-color: unset !important;
-}
-
-
-/* Archive button (inbox email, opened email) *
-.brq, .ar8 {
-    background-image: url('chrome-extension://__MSG_@@extension_id__/images/btw_ic_done_black_24dp_2x.png') !important;
-    background-size: 24px !important;
-}
-
-
-@-moz-document url-prefix() {
-    /* Archive button (inbox email, opened email) *
-    .brq, .ar8 {
-        background-image: url('moz-extension://__MSG_@@extension_id__/images/btw_ic_done_black_24dp_2x.png') !important;
-    }
-}
-
 
 /* Spacing on bottom of email list */
 .BltHke.oy8Mbf {
@@ -126,13 +19,6 @@ input.gb_3e {
 .bundle-image img {
     width: 28px;
 }
-/*
-.bundle-wrapper .label-link {
-	margin-left: 5px;
-	font-size: 13px;
-	margin-right: 32px;
-}
-*/
 .bundle-wrapper.contains-unread .label-link,
 .bundle-wrapper .bundle-senders span.strong {
     font-weight: 700;
@@ -142,11 +28,6 @@ input.gb_3e {
     opacity: 0.6;
 }
 
-/*
-.bundle-senders {
-	color: #202124 !important;
-}
-*/
 /* Parent of .bundle-senders */
 .label-link+.a4W.xY {
     flex-grow: 1;
@@ -211,51 +92,3 @@ input.gb_3e {
 body.email-bundling-enabled.bundle-page .nH.ar4.B .at[title=Inbox] {
     display: none !important;
 }
-
-/* Override narrow width class */
-/*
-.Zs .zA {
-    -webkit-flex-wrap: nowrap !important;
-	flex-wrap: nowrap !important;
-}
-.Zs .zA > .a4W {
-	margin-left: unset !important;
-}
-.Zs .a4W .xT {
-	flex-wrap: unset !important;
-}
-.Zs .yi {
-	margin-left: 0 !important;
-	max-width: unset !important;
-}
-.Zs .y2 {
-	min-width: unset !important;
-	-webkit-flex: 1 !important;
-	flex: 1 !important;
-}
-.Zs .zA > .xW {
-	-webkit-flex-basis: 1 !important;
-	flex-basis: 1 !important;
-	flex-grow: 400 !important;
-	flex-basis: 0 !important;
-}
-.Zs .y6 {
-	order: 1 !important;
-}
-.Zs .zA > .yX {
-	flex: initial !important;
-}
-.Zs .zA > .xY {
-	order: 1 !important;
-}
-*/
-
-
-/* Hide Compose and Reminder buttons from Gmail's Print view *
-@media print {
-    .add-reminder,
-    .floating-compose {
-        display: none;
-    }
-}
-*/

@@ -21,43 +21,9 @@ Element.prototype.remove = function () {
     this.parentElement.removeChild(this);
 };
 
-/*
-const getMyEmailAddress = () => {
-    if (document.querySelector('.gb_hb').innerText) return document.querySelector('.gb_hb').innerText;
-    if (document.querySelector('.gb_lb').innerText) return document.querySelector('.gb_lb').innerText;
-    if (document.querySelector('.gb_qb').innerText) return document.querySelector('.gb_qb').innerText;
-    return '';
-}
-*/
-
 const getEmailParticipants = function (email) {
     return email.querySelectorAll('.yW span[email]');
 };
-
-/*
-const isReminder = function (email, myEmailAddress) {
-    // if user doesn't want reminders treated special, then just return as though current email is not a reminder
-    if (options.reminderTreatment === 'none') return false;
-
-    const nameNodes = getEmailParticipants(email);
-    let allNamesMe = true;
-
-    if (nameNodes.length === 0) allNamesMe = false;
-
-    for (const nameNode of nameNodes) {
-        if (nameNode.getAttribute('email') !== myEmailAddress) allNamesMe = false;
-    }
-
-    if (options.reminderTreatment === 'all') {
-        return allNamesMe;
-    } else if (options.reminderTreatment === 'containing-word') {
-        const titleNode = email.querySelector('.y6');
-        return allNamesMe && titleNode && titleNode.innerText.match(/reminder/i);
-    }
-
-    return false;
-};
-*/
 
 const getBundledLabels = function () {
     return Array.from(document.querySelectorAll('.BltHke[role=main] .bundle-wrapper')).reduce((bundledLabels, el) => {
@@ -220,7 +186,7 @@ const buildBundleWrapper = function (email, label, hasImportantMarkers) {
     if (email && email.parentNode) email.parentElement.insertBefore(bundleWrapper, email);
 };
 
-const isInInbox = () => document.location.hash.match(/#inbox/g) !== null; //document.querySelector('.byl .TO:first-of-type.nZ') !== null;
+const isInInbox = () => document.location.hash.match(/#inbox/g) !== null;
 
 const getBundleName = () => {
     const match = document.location.hash.match(/#search\/in(?:%3A|:)inbox\+label(?:%3A|:)%22(.+?)%22$/);
@@ -274,7 +240,6 @@ const createStyleNodeWithEmailId = (id) => {
 
 const getEmails = () => {
     const emails = document.querySelectorAll('.BltHke[role=main] .zA');
-    //const myEmailAddress = getMyEmailAddress();
     const isInInboxFlag = isInInbox();
     const bundleName = getBundleName();
     const processedEmails = [];
@@ -291,8 +256,6 @@ const getEmails = () => {
         let email = emails[i];
         let info = {};
         info.emailEl = email;
-        //info.isReminder = isReminder(email, myEmailAddress);
-        //info.reminderAlreadyProcessed = () => checkEmailClass(email, REMINDER_EMAIL_CLASS);
         info.isStarred = isStarred(email);
         info.labels = getLabels(email);
         info.labels.forEach(l => allLabels.add(l));
@@ -410,18 +373,6 @@ const updateBundles = () => {
     for (const emailInfo of emails) {
         const emailEl = emailInfo.emailEl;
 
-        /*
-        if (emailInfo.isReminder && !emailInfo.reminderAlreadyProcessed()) { // skip if already added class
-            if (emailInfo.subject.toLowerCase() === 'reminder') {
-                emailInfo.subjectEl.outerHTML = '';
-                emailEl.querySelectorAll('.Zt').forEach(node => node.outerHTML = '');
-            }
-            emailEl.querySelectorAll('.yP,.zF').forEach(node => { node.innerHTML = 'Reminder';});
-
-            addClassToEmail(emailEl, REMINDER_EMAIL_CLASS);
-        }
-        */
-
         if (options.emailBundling === 'enabled') {
             // Remove bundles that no longer have associated emails
             if (emailInfo.isBundleWrapper() && !allLabels.has(emailEl.getAttribute('bundleLabel'))) {
@@ -449,113 +400,6 @@ const updateBundles = () => {
         }
     }
 };
-
-/*
-**
-**START OF LEFT MENU
-**
-*
-
-const menuNodes = {};
-const setupMenuNodes = () => {
-  const observer = new MutationObserver(() => {
-    // menu items
-    [
-      { label: 'inbox',     selector: '.aHS-bnt' },
-      { label: 'snoozed',   selector: '.aHS-bu1' },
-      { label: 'done',      selector: '.aHS-aHO' },
-      { label: 'drafts',    selector: '.aHS-bnq' },
-      { label: 'sent',      selector: '.aHS-bnu' },
-      { label: 'spam',      selector: '.aHS-bnv' },
-      { label: 'trash',     selector: '.aHS-bnx' },
-      { label: 'starred',   selector: '.aHS-bnw' },
-      { label: 'important', selector: '.aHS-bns' },
-      { label: 'chats',     selector: '.aHS-aHP' },
-    ].map(({ label, selector }) => {
-      const node = queryParentSelector(document.querySelector(selector), '.aim');
-      if (node) menuNodes[label] = node;
-    });
-  });
-  observer.observe(document.body, { subtree: true, childList: true });
-};
-
-const reorderMenuItems = () => {
-  const observer = new MutationObserver(() => {
-    const parent = document.querySelector('.wT .byl');
-    const refer = document.querySelector('.wT .byl>.TK');
-    const { inbox, snoozed, done, drafts, sent, spam, trash, starred, important, chats } = menuNodes;
-
-    if (parent && refer && loadedMenu && inbox && snoozed && done && drafts && sent && spam && trash && starred && important && chats) {
-      // Gmail will execute its script to add element to the first child, so
-      // add one placeholder for it and do the rest in the next child.
-      const placeholder = document.createElement('div');
-      placeholder.classList.add('TK');
-      placeholder.style.cssText = 'padding: 0; border: 0;';
-
-      // Assign link href which only show archived mail
-      done.querySelector('a').href = '#archive';
-
-      // Remove id attribute from done element for preventing event override from Gmail
-      done.firstChild.removeAttribute('id');
-
-      // Manually add on-click event to done elment
-      done.addEventListener('click', () => window.location.assign('#archive'));
-
-      // Rewrite text from All Mail to Done
-      done.querySelector('a').innerText = 'Done';
-
-      const newNode = document.createElement('div');
-      newNode.classList.add('TK');
-      newNode.appendChild(inbox);
-      newNode.appendChild(snoozed);
-      newNode.appendChild(done);
-      parent.insertBefore(placeholder, refer);
-      parent.insertBefore(newNode, refer);
-
-      setupClickEventForNodes([inbox, snoozed, done, drafts, sent, spam, trash, starred, important, chats]);
-
-      // Close More menu
-      document.body.querySelector('.J-Ke.n4.ah9').click();
-      observer.disconnect();
-    }
-
-    if (!loadedMenu && inbox) {
-      // Open More menu
-      document.body.querySelector('.J-Ke.n4.ah9').click();
-      loadedMenu = true;
-    }
-  });
-  observer.observe(document.body, { subtree: true, childList: true });
-};
-
-const activateMenuItem = (target, nodes) => {
-  nodes.map(node => node.firstChild.classList.remove('nZ'));
-  target.firstChild.classList.add('nZ');
-};
-
-const setupClickEventForNodes = (nodes) => {
-  nodes.map(node =>
-    node.addEventListener('click', () =>
-      activateMenuItem(node, nodes)
-    )
-  );
-};
-
-const queryParentSelector = (elm, sel) => {
-  if (!elm) return null;
-  var parent = elm.parentElement;
-  while (!parent.matches(sel)) {
-    parent = parent.parentElement;
-    if (!parent) return null;
-  }
-  return parent;
-};
-
-/*
-**
-**END OF LEFT MENU
-**
-*/
 
 const triggerMouseEvent = function (node, event) {
     const mouseEvent = document.createEvent('MouseEvents');
@@ -588,13 +432,3 @@ const waitForElement = function (selector, callback, tries = 100) {
 document.addEventListener('DOMContentLoaded', function () {
     setInterval(updateBundles, 250);
 });
-
-/*
-const init = () => {
-    setupMenuNodes();
-    reorderMenuItems();
-};
-
-if (document.head) init();
-else document.addEventListener('DOMContentLoaded', init);
-*/
