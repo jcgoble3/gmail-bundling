@@ -1,6 +1,6 @@
 {
     "name": "Email Bundling for Gmail™",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "manifest_version": 2,
     "description": "Adds email bundling to Gmail™, similar to the defunct Inbox interface",
     "homepage_url": "https://github.com/jcgoble3/gmail-bundling",
