@@ -40,14 +40,18 @@ and only closed it once boukestam and russelldc had implemented bundling by labe
 I also used an old version of the Inbox Android app without the hidden remote kill switch
 until Google finally disabled the APIs it used in June 2019.)
 
-Hence, I set out on this project to strip out the unnecessary cosmetic bloat and produce an slimmer extension that only does bundling and nothing else
+Hence, I set out on this project to strip out the unnecessary cosmetic bloat
+and produce an slimmer extension that only does bundling and nothing else.
 I also want it to work in Gmail™'s native interface as well as with any theme.
-On my first editing session, I stripped out over 1,300 unnecessary lines of CSS -- a reduction of over 80% in the CSS file.
-Significant progress has been made on the JavaScript as well, and the extension is almost ready for use.
+On my first editing session, I stripped out over 1,300 unnecessary lines of CSS
+-- a reduction of over 80% in the CSS file.
+Significant progress has been made on the JavaScript as well,
+and the extension is almost ready for use if I ever stop being lazy and finish it.
 
 ## Installing
 
-This is a work-in-progress and is not yet available on the official extension stores.
+This is a work in progress and is not yet available on the official extension stores.
+However, beta versions for Firefox only are available in the Releases section here.
 
 ## License
 
