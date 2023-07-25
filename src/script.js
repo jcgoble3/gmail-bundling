@@ -26,7 +26,7 @@ const getEmailParticipants = function (email) {
 };
 
 const getBundledLabels = function () {
-    return Array.from(document.querySelectorAll('.BltHke[role=main] .bundle-wrapper')).reduce((bundledLabels, el) => {
+    return Array.from(document.querySelectorAll('[role=main] .bundle-wrapper')).reduce((bundledLabels, el) => {
         bundledLabels[el.attributes.bundleLabel.value] = true;
         return bundledLabels;
     }, {});
@@ -239,7 +239,7 @@ const createStyleNodeWithEmailId = (id) => {
 };
 
 const getEmails = () => {
-    const emails = document.querySelectorAll('.BltHke[role=main] .zA');
+    const emails = document.querySelectorAll('[role=main] .zA');
     const isInInboxFlag = isInInbox();
     const bundleName = getBundleName();
     const processedEmails = [];
