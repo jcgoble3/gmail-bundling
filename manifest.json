@@ -1,10 +1,10 @@
 {
     "name": "Email Bundling for Gmail™",
     "version": "0.2.3",
-    "manifest_version": 2,
+    "manifest_version": 3,
     "description": "Adds email bundling to Gmail™, similar to the defunct Inbox interface",
     "homepage_url": "https://github.com/jcgoble3/gmail-bundling",
-    "browser_action": {
+    "action": {
         "default_popup": "src/options/options.html"
     },
     "options_ui": {
@@ -12,8 +12,7 @@
         "open_in_tab": false
     },
     "background": {
-        "scripts": ["src/background.js"],
-        "persistent": false
+        "scripts": ["src/background.js"]
     },
     "permissions": [
         "storage"
@@ -38,6 +37,14 @@
         }
     ],
     "web_accessible_resources": [
-        "images/*"
-    ]
+        {
+            "resources": ["images/*"],
+            "matches": ["https://mail.google.com/*"]
+        }
+    ],
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "{ce47def3-275c-4577-9764-abfc47169e8a}"
+        }
+    }
 }
