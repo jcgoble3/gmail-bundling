@@ -4,7 +4,7 @@ const BUNDLE_WRAPPER_CLASS = 'bundle-wrapper';
 const UNREAD_BUNDLE_CLASS = 'contains-unread';
 const BUNDLED_EMAIL_CLASS = 'bundled-email';
 const BUNDLING_OPTION_CLASS = 'email-bundling-enabled';
-const UNBUNDLED_PARENT_LABEL = 'Unbundled';
+const UNBUNDLED_SUFFIX = '$';
 const UNBUNDLED_EMAIL_CLASS = 'unbundled-email';
 const STYLE_NODE_ID_PREFIX = 'hide-email-';
 
@@ -199,7 +199,7 @@ const getBundleName = () => {
 
 const checkImportantMarkers = () => document.querySelector('td.WA.xY');
 
-const checkEmailUnbundledLabel = labels => labels.filter(label => label.indexOf(UNBUNDLED_PARENT_LABEL) < 0).length == 0;
+const checkEmailUnbundledLabel = labels => labels.filter(label => label.indexOf(UNBUNDLED_SUFFIX) < 0).length == 0;
 
 const getReadStatus = emailEl => emailEl.className.indexOf('zE') < 0;
 
@@ -267,9 +267,9 @@ const getEmails = () => {
             addClassToEmail(email, UNBUNDLED_EMAIL_CLASS);
         }
         info.emailEl.querySelectorAll('.ar.as').forEach(labelEl => {
-            if (labelEl.querySelector('.at').title.indexOf(UNBUNDLED_PARENT_LABEL) >= 0) {
-                // Remove 'Unbundled/' from display in the UI
-                labelEl.querySelector('.av').innerText = labelEl.innerText.replace(UNBUNDLED_PARENT_LABEL + '/', '');
+            if (labelEl.querySelector('.at').title.indexOf(UNBUNDLED_SUFFIX) >= 0) {
+                // Remove '$' from display in the UI
+                labelEl.querySelector('.av').innerText = labelEl.innerText.replace(UNBUNDLED_SUFFIX + '/', '');
             }
         });
 
@@ -387,7 +387,7 @@ const updateBundles = () => {
                     // Insert style node to avoid bundled emails appearing briefly in inbox during redraw
                     if (!hiddenEmailIds.includes(emailEl.id)) createStyleNodeWithEmailId(emailEl.id);
 
-                    if (!(label in emailBundles) && label.indexOf(UNBUNDLED_PARENT_LABEL) < 0) {
+                    if (!(label in emailBundles) && label.indexOf(UNBUNDLED_SUFFIX) < 0) {
                         buildBundleWrapper(emailEl, label, hasImportantMarkers);
                         emailBundles[label] = true;
                     }
