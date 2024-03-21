@@ -269,7 +269,7 @@ const getEmails = () => {
         info.emailEl.querySelectorAll('.ar.as').forEach(labelEl => {
             if (labelEl.querySelector('.at').title.indexOf(UNBUNDLED_SUFFIX) >= 0) {
                 // Remove '$' from display in the UI
-                labelEl.querySelector('.av').innerText = labelEl.innerText.replace(UNBUNDLED_SUFFIX + '/', '');
+                labelEl.querySelector('.av').innerText = labelEl.innerText.replace(UNBUNDLED_SUFFIX, '');
             }
         });
 
